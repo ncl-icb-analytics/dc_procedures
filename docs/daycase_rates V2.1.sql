@@ -30,10 +30,7 @@ SELECT DISTINCT
 			CASE 
 			WHEN fssc.PRIMARYKEY_ID IS NULL THEN 0
 			ELSE 1 
-			END AS [Critical Care Flag],
-			--Exclusions
-			ex.id_pro AS [exclusion_id],
-			ex_pro.name AS [exclusion_flag]
+			END AS [Critical Care Flag]
 
 FROM ncl.dbo.Maindata_FasterSUS_IP_all_93c ip
 
@@ -71,33 +68,6 @@ AND ip.Fin_Month = lu.Fin_month
 --Procedure information
 LEFT JOIN [Data_Lab_NCL].[dbo].[apc_day_procedures] pro
 ON lu.id_pro = pro.id
-
-
---Exclusion
-LEFT JOIN (
-	SELECT d.Year, d.Fin_month, d.eID, d.id_pro 
-	FROM (
-		--For cases where procedure definitions overlap, take the one with the highest priority. Runs on the assumption there is no overlap between specialities
-		SELECT *, ROW_NUMBER() OVER(PARTITION BY lu.eID ORDER BY priority) AS row_num
-		FROM [Data_Lab_NCL].[dbo].[apc_day_prolu] lu
-
-		INNER JOIN [Data_Lab_NCL].[dbo].[apc_day_procedures] pro
-		ON lu.id_pro = pro.id
-
-		WHERE lu.id_pro > 900
-	) d
-	WHERE d.row_num = 1
-) ex
-
----Filtering on year and month is non-essential but increases performance
-ON ip.eID = ex.eID
-AND ip.Year = ex.Year
-AND ip.Fin_Month = ex.Fin_month
-
---Procedure information
-LEFT JOIN [Data_Lab_NCL].[dbo].[apc_day_procedures] ex_pro
-ON ex.id_pro = ex_pro.id
-
 
 --Specify relevant organisations
 WHERE 
