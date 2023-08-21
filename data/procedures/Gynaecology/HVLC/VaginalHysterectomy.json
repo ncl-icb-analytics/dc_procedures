@@ -1,0 +1,37 @@
+{
+    "id": 18,
+    "name": "Vaginal Hysterectomy / Vaginal Wall Repair",
+    "speciality_area": "Gynaecology",
+    "HVLC": 1,
+    "priority": 5,
+    "benchmark": 0.204,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "Speciality":{
+            "TFC": [502, 503],
+            "MainSpec": [500, 502]
+        },
+        "logic":{
+            "eq": "A AND B",
+            "A":{
+                "cg":"cg_gyn_vh1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "B":{
+                "cg":"cg_gyn_x1",
+                "action":"out",
+                "type":"icd",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

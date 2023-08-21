@@ -1,0 +1,33 @@
+{
+    "id": 5,
+    "name": "One or Two Level Posterior Fusion Surgery",
+    "speciality_area": "Spinal Surgery",
+    "HVLC": 1,
+    "priority": 5,
+    "benchmark": 0.8,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "A AND B",
+            "A":{
+                "cg":"cg_ss_pfs1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "B":{
+                "cg":"cg_ss_pfs2",
+                "action":"out",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

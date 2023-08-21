@@ -1,0 +1,96 @@
+{
+    "id": 25,
+    "name": "Therapeutic Shoulder Arthroscopy",
+    "speciality_area": "Orthopaedics",
+    "HVLC": 1,
+    "priority": 6,
+    "benchmark": 0.90,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "( A AND B ) OR ( C AND D ) OR ( E AND F AND G ) OR ( H AND I )",
+            "A":{
+                "cg":"cg_ort_tsa1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            },
+            "B":{
+                "cg":"cg_ort_tsa2",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "C":{
+                "cg":"cg_ort_tsa3",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            },
+            "D":{
+                "cg":"cg_ort_tsa4",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "E":{
+                "cg":"cg_ort_tsa5",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            },
+            "F":{
+                "cg":"cg_ort_tsa6",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "G":{
+                "cg":"cg_ort_tsa7",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "H":{
+                "cg":"cg_ort_tsa8",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            },
+            "I":{
+                "cg":"cg_ort_tsa9",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

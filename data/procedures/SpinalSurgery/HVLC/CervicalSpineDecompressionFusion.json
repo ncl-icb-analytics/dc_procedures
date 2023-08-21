@@ -1,0 +1,51 @@
+{
+    "id": 2,
+    "name": "Cervical Spine Decompression / Fusion",
+    "speciality_area": "Spinal Surgery",
+    "HVLC": 1,
+    "priority": 2,
+    "benchmark": 0.8,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "( A OR ( B AND C ) ) AND D",
+            "A":{
+                "cg":"cg_ss_csdf1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "B":{
+                "cg":"cg_ss_csdf2",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "C":{
+                "cg":"cg_ss_csdf3",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "D":{
+                "cg":"cg_ss_csdf4",
+                "action":"out",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "id": 19,
+    "name": "Low Complexity Cataract Surgery",
+    "speciality_area": "Ophthalmology",
+    "HVLC": 1,
+    "priority": 1,
+    "benchmark": 1,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "( A AND B ) AND C AND D",
+            "A":{
+                "cg":"cg_opt_lccs1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "B":{
+                "cg":"cg_opt_lccs2",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "C":{
+                "cg":"cg_opt_lccs3",
+                "action":"out",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "D":{
+                "cg":"cg_opt_lccs4",
+                "action":"out",
+                "type":"icd",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

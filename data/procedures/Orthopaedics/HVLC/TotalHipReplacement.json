@@ -1,0 +1,60 @@
+{
+    "id": 21,
+    "name": "Total Hip Replacement",
+    "speciality_area": "Orthopaedics",
+    "HVLC": 1,
+    "priority": 2,
+    "benchmark": 0.1,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "( A OR ( B AND C ) ) AND D AND E",
+            "A":{
+                "cg":"cg_ort_thr1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            },
+            "B":{
+                "cg":"cg_ort_thr2",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            },
+            "C":{
+                "cg":"cg_ort_thr3",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "D":{
+                "cg":"cg_ort_thr4",
+                "action":"out",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "E":{
+                "cg":"cg_ort_thr5",
+                "action":"out",
+                "type":"icd",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

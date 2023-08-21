@@ -1,0 +1,37 @@
+{
+    "id": 10,
+    "name": "Septorhinoplasty",
+    "speciality_area": "ENT",
+    "HVLC": 1,
+    "priority": 5,
+    "benchmark": 0.90,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "Speciality":{
+            "TFC": [120, 215],
+            "MainSpec": [120]
+        },
+        "logic":{
+            "eq": "A AND B",
+            "A":{
+                "cg":"cg_ent_s1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            },
+            "B":{
+                "cg":"cg_hn_cancer",
+                "action":"out",
+                "type":"icd",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

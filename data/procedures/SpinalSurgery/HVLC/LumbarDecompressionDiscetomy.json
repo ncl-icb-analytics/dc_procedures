@@ -1,0 +1,51 @@
+{
+    "id": 1,
+    "name": "Lumbar Decompression / Discectomy",
+    "speciality_area": "Spinal Surgery",
+    "HVLC": 1,
+    "priority": 1,
+    "benchmark": 0.8,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "( A OR ( B AND C ) ) AND D",
+            "A":{
+                "cg":"cg_ss_ldd1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "B":{
+                "cg":"cg_ss_ldd2",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "C":{
+                "cg":"cg_ss_ldd3",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "D":{
+                "cg":"cg_ss_ldd4",
+                "action":"out",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

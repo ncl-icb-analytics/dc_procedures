@@ -1,0 +1,33 @@
+{
+    "id": 13,
+    "name": "Para-umbilical Hernia",
+    "speciality_area": "General Surgery",
+    "HVLC": 1,
+    "priority": 3,
+    "benchmark": 0.9,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "A AND B",
+            "A":{
+                "cg":"cg_gs_ph1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "B":{
+                "cg":"cg_gs_ph2",
+                "action":"out",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

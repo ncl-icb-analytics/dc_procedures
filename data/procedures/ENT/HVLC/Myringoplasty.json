@@ -1,0 +1,37 @@
+{
+    "id": 8,
+    "name": "Myringoplasty",
+    "speciality_area": "ENT",
+    "HVLC": 1,
+    "priority": 3,
+    "benchmark": 0.95,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "Speciality":{
+            "TFC": [120, 215],
+            "MainSpec": [120]
+        },
+        "logic":{
+            "eq": "A AND B",
+            "A":{
+                "cg":"cg_ent_m1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            },
+            "B":{
+                "cg":"cg_hn_cancer",
+                "action":"out",
+                "type":"icd",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

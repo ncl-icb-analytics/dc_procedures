@@ -1,0 +1,42 @@
+{
+    "id": 12,
+    "name": "Primary Inguinal Hernia Repair",
+    "speciality_area": "General Surgery",
+    "HVLC": 1,
+    "priority": 2,
+    "benchmark": 0.9,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "A AND B AND C",
+            "A":{
+                "cg":"cg_gs_pihr1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "B":{
+                "cg":"cg_gs_pihr2",
+                "action":"out",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "C":{
+                "cg":"cg_gs_pihr3",
+                "action":"out",
+                "type":"icd",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

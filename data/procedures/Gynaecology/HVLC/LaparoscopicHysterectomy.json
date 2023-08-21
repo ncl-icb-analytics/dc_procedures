@@ -1,0 +1,46 @@
+{
+    "id": 15,
+    "name": "Laparoscopic Hysterectomy",
+    "speciality_area": "Gynaecology",
+    "HVLC": 1,
+    "priority": 2,
+    "benchmark": 0.041,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "Speciality":{
+            "TFC": [502, 503],
+            "MainSpec": [500, 502]
+        },
+        "logic":{
+            "eq": "A AND B AND C",
+            "A":{
+                "cg":"cg_gyn_lh1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "B":{
+                "cg":"cg_gyn_lh2",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "C":{
+                "cg":"cg_gyn_x1",
+                "action":"out",
+                "type":"icd",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

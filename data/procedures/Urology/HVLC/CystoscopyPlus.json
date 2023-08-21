@@ -1,0 +1,28 @@
+{
+    "id": 28,
+    "name": "Cystoscopy Plus",
+    "speciality_area": "Urology",
+    "HVLC": 1,
+    "priority": 3,
+    "benchmark": 0.8,
+    "Speciality":{
+        "TFC": [101, 211],
+        "MainSpec": [101]
+    },
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "A",
+            "A":{
+                "cg":"cg_uro_cp1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            }
+        } 
+    }
+}

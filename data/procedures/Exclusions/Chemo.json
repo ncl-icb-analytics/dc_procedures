@@ -1,0 +1,22 @@
+{
+    "id": 901,
+    "name": "Chemo",
+    "speciality_area": "Exclusion",
+    "HVLC": 0,
+    "priority": 901,
+    "benchmark": 0,
+    "conditions": {
+        "logic":{
+            "eq": "A",
+            "A":{
+                "cg":"cg_ex_c1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

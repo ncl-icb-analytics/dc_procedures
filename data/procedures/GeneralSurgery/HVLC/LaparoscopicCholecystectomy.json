@@ -1,0 +1,42 @@
+{
+    "id": 11,
+    "name": "Laparoscopic Cholecystectomy",
+    "speciality_area": "General Surgery",
+    "HVLC": 1,
+    "priority": 1,
+    "benchmark": 0.75,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "A AND B AND C",
+            "A":{
+                "cg":"cg_gs_lc1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            },
+            "B":{
+                "cg":"cg_gs_lc2",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            },
+            "C":{
+                "cg":"cg_gs_lc3",
+                "action":"out",
+                "type":"opcs",
+                "level": {
+                    "first":0,
+                    "last":0
+                }
+            }
+        } 
+    }
+}

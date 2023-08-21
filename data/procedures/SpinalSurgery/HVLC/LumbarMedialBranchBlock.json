@@ -1,0 +1,24 @@
+{
+    "id": 3,
+    "name": "Lumbar Medial Branch Block / Facet Joint Injections",
+    "speciality_area": "Spinal Surgery",
+    "HVLC": 1,
+    "priority": 3,
+    "benchmark": 0.8,
+    "conditions": {
+        "Age": "Adult",
+        "POD": ["EL", "DC"],
+        "logic":{
+            "eq": "A",
+            "A":{
+                "cg":"cg_ss_lmbb1",
+                "action":"in",
+                "type":"opcs",
+                "level": {
+                    "first":1,
+                    "last":1
+                }
+            }
+        } 
+    }
+}
