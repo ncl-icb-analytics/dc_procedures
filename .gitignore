@@ -7,8 +7,8 @@
 .quarto
 
 # Exclude the following directories 
-/data/
-/output/
+/output/*
+/docs/archive/historic/
 
 # Exclude data file types
 *.doc
@@ -20,4 +20,4 @@
 *.csv
 *.pdf
 
-test.ipynb
+.env
