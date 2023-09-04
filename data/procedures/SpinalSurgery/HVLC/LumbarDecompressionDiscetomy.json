@@ -4,7 +4,6 @@
     "speciality_area": "Spinal Surgery",
     "HVLC": 1,
     "priority": 1,
-    "benchmark": 0.8,
     "conditions": {
         "Age": "Adult",
         "POD": ["EL", "DC"],
