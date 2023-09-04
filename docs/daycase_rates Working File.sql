@@ -26,6 +26,8 @@ SELECT			[Fin_Month],
 				--Critical Care
 				[Critical Care Flag],
 				SUM(dc_count) AS [dc],
+				SUM(el_count) AS [el],
+				SUM(los_01_el_count) AS [los_01_el],
 				COUNT(1) AS [activity]
 
 FROM (
@@ -43,6 +45,8 @@ FROM (
 				-- For POD category AND Booked Type
 				ip.[POD],
 				CASE WHEN ip.[POD] = 'DC' THEN 1 ELSE 0 END AS [dc_count],
+				CASE WHEN ip.[POD] = 'EL' THEN 1 ELSE 0 END AS [el_count],
+				CASE WHEN ip.[POD] = 'EL' AND ip.[BedDays] < 2 THEN 1 ELSE 0 END AS [los_01_el_count],
 				-- Procedure
 				lu.[id_pro],
 				CASE WHEN pro.[name] IS NULL THEN 'Other' ELSE pro.[name] END AS [procedure_name],
@@ -191,7 +195,7 @@ SELECT			[Fin_Month],
 				[Qtr],
 				-- For Org name
 				'X' AS [org_code],
-				'NCL' AS [org_name],
+				'agg_NCL' AS [org_name],
 				'NCL' AS [shorthand],
 				-- For POD category AND Booked Type
 				[POD],
@@ -212,6 +216,8 @@ SELECT			[Fin_Month],
 				--Critical Care
 				[Critical Care Flag],
 				SUM(dc_count) AS [dc],
+				SUM(el_count) AS [el],
+				SUM(los_01_el_count) AS [los_01_el],
 				COUNT(1) AS [activity]
 
 FROM (
@@ -229,6 +235,8 @@ FROM (
 				-- For POD category AND Booked Type
 				ip.[POD],
 				CASE WHEN ip.[POD] = 'DC' THEN 1 ELSE 0 END AS [dc_count],
+				CASE WHEN ip.[POD] = 'EL' THEN 1 ELSE 0 END AS [el_count],
+				CASE WHEN ip.[POD] = 'EL' AND ip.[BedDays] < 2 THEN 1 ELSE 0 END AS [los_01_el_count],
 				-- Procedure
 				lu.[id_pro],
 				CASE WHEN pro.[name] IS NULL THEN 'Other' ELSE pro.[name] END AS [procedure_name],
