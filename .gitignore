@@ -9,7 +9,7 @@
 # Exclude the following directories 
 /output/*
 /docs/archive/historic/
-/data/procedures/
+/data/procedures/*/Other
 
 # Exclude data file types
 *.doc
