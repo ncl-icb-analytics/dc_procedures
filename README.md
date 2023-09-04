@@ -7,14 +7,27 @@ The purpose of the lookup table is to generate a map between Faster SUS rows and
 
 ### [2.0] - 18/08/2023
 
-- Initial version of the daycase_rates script that uses the procedure lookup table and Faster SUS.
-- Initial version of the procedure_table code to generate the Data_Lab_NCL.dbp.apc_daycase_procedures table.
+- Initial version of the daycase_rates script that uses the procedure lookup table and Faster SUS
+- Initial version of the procedure_table code to generate the Data_Lab_NCL.dbp.apc_daycase_procedures table
 - Added lookup sql scripts to show basic usage of the procedure lookup table
 - Added cg_gen script to generate formatted arrays of codegroups from the GIRFT pdf definitions
 
 ### [2.1] - 21/08/2023
 
 - Added columns to implement the exclusion flags (WIP, current chemo and radiography procedures)
+
+### [2.2] - 31/08/2023
+
+- Added Exclusion procedures based on historic ad-hoc request
+
+### [2.3] - 01/09/2023
+
+- Aggregated main Day Case Rates SQL script for performance
+- Commented out exclusion code for performance until requested
+
+### [2.4] - 04/09/2023
+
+- Added columns to process Elective activity and LOS 0-1 activity for DAX measures
 
 ## Design
 
