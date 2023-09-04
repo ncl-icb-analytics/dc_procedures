@@ -1,16 +1,19 @@
---DISTINCT to rem
+--DISTINCT to remove duplicates from the SUS dataset
 SELECT DISTINCT
 			ip.[eID],
 			ip.[Fin_Month], ip.[Year],
+			CONCAT(ip.Year, '_', ip.[Fin_Month]) AS [datapoint],
+			((ip.[Fin_Month] - 1) / 3) + 1 AS [Qtr],
 			-- Both used and for Adult/Paed
 			ip.[Age],
 			-- For Org name
 			ip.[ProviderCode],
 			-- For POD category AND Booked Type
 			ip.[POD],
+			CASE WHEN ip.[POD] = 'DC' THEN 1 ELSE 0 END AS [dc_count],
 			-- Procedure
 			lu.[id_pro],
-			pro.[name] AS [procedure_name],
+			CASE WHEN pro.[name] IS NULL THEN 'Other' ELSE pro.[name] END AS [procedure_name],
 			pro.speciality_area AS [procedure_speciality],
 			pro.benchmark AS [procedure_benchmark],
 			pro.[HVLC] AS [hvlc],
@@ -30,7 +33,10 @@ SELECT DISTINCT
 			CASE 
 			WHEN fssc.PRIMARYKEY_ID IS NULL THEN 0
 			ELSE 1 
-			END AS [Critical Care Flag]
+			END AS [Critical Care Flag],
+			--Exclusions
+			ex.id_pro AS [exclusion_id],
+			ex_pro.name AS [exclusion_flag]
 
 FROM ncl.dbo.Maindata_FasterSUS_IP_all_93c ip
 
@@ -68,6 +74,33 @@ AND ip.Fin_Month = lu.Fin_month
 --Procedure information
 LEFT JOIN [Data_Lab_NCL].[dbo].[apc_day_procedures] pro
 ON lu.id_pro = pro.id
+
+
+--Exclusion
+LEFT JOIN (
+	SELECT d.Year, d.Fin_month, d.eID, d.id_pro 
+	FROM (
+		--For cases where procedure definitions overlap, take the one with the highest priority. Runs on the assumption there is no overlap between specialities
+		SELECT *, ROW_NUMBER() OVER(PARTITION BY lu.eID ORDER BY priority) AS row_num
+		FROM [Data_Lab_NCL].[dbo].[apc_day_prolu] lu
+
+		INNER JOIN [Data_Lab_NCL].[dbo].[apc_day_procedures] pro
+		ON lu.id_pro = pro.id
+
+		WHERE lu.id_pro > 900
+	) d
+	WHERE d.row_num = 1
+) ex
+
+---Filtering on year and month is non-essential but increases performance
+ON ip.eID = ex.eID
+AND ip.Year = ex.Year
+AND ip.Fin_Month = ex.Fin_month
+
+--Procedure information
+LEFT JOIN [Data_Lab_NCL].[dbo].[apc_day_procedures] ex_pro
+ON ex.id_pro = ex_pro.id
+
 
 --Specify relevant organisations
 WHERE 
