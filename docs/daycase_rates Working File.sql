@@ -5,7 +5,7 @@ WITH cte (
 	[POD], [dc], [el], [los_01_el], [activity],
 	[id_pro], [procedure_speciality], [procedure_name], [procedure_benchmark], [hvlc],
 	[spell.admission.intended_management], [intended],
-	[BedDays]
+	[BedDays], [independent_care]
 ) 
 AS (
 
@@ -33,7 +33,8 @@ AS (
 			ELSE 'Other'
 		END AS [intended],
 		-- For LOS
-		[BedDays]
+		[BedDays], 
+		CASE WHEN [shorthand] IN ('BMIC', 'HEN', 'KING', 'HIGH') THEN 1 ELSE 0 END AS [independent_care]
 				
 	FROM (
 		--DISTINCT to remove duplicates from the SUS dataset
@@ -145,7 +146,7 @@ SELECT
 	[POD], [dc], [el], [los_01_el], [activity],
 	[id_pro], [procedure_speciality], [procedure_name], [procedure_benchmark], [hvlc],
 	[spell.admission.intended_management], [intended],
-	[BedDays]
+	[BedDays], [independent_care]
 
 FROM (
 	SELECT 
@@ -157,7 +158,8 @@ FROM (
 		SUM([activity]) AS [activity],
 		[id_pro], [procedure_speciality], [procedure_name], [procedure_benchmark], [hvlc],
 		[spell.admission.intended_management], [intended],
-		[BedDays]
+		[BedDays], [independent_care]
+
 	FROM cte
 
 	WHERE org_code IN ('RAP','RKE','RAN','RRV','RAL','RP6','RP4')
@@ -167,5 +169,6 @@ FROM (
 		[POD], 
 		[id_pro], [procedure_speciality], [procedure_name], [procedure_benchmark], [hvlc],
 		[spell.admission.intended_management], [intended],
-		[BedDays]
+		[BedDays], [independent_care]
+
 ) agg
