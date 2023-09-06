@@ -5,9 +5,7 @@ WITH cte (
 	[POD], [dc], [el], [los_01_el], [activity],
 	[id_pro], [procedure_speciality], [procedure_name], [procedure_benchmark], [hvlc],
 	[spell.admission.intended_management], [intended],
-	[BedDays],
-	[commissioner_ncl],
-	[Critical Care Flag]
+	[BedDays]
 ) 
 AS (
 
@@ -35,11 +33,7 @@ AS (
 			ELSE 'Other'
 		END AS [intended],
 		-- For LOS
-		[BedDays],
-		-- For NCL\Non-NCL
-		[commissioner_ncl],
-		--Critical Care
-		[Critical Care Flag]
+		[BedDays]
 				
 	FROM (
 		--DISTINCT to remove duplicates from the SUS dataset
@@ -65,14 +59,8 @@ AS (
 			--In Spell?
 			fss.[spell.admission.intended_management],
 			-- For LOS
-			ip.[BedDays],
-			-- For NCL\Non-NCL
-			CASE WHEN [CommissionerCode] IN ('07M','07R','07X','08D','08H','93C') THEN 1 ELSE 0 END AS [commissioner_ncl],
-			--Critical Care
-			CASE 
-			WHEN fssc.PRIMARYKEY_ID IS NULL THEN 0
-			ELSE 1 
-			END AS [Critical Care Flag]
+			ip.[BedDays]
+			
 
 		FROM ncl.dbo.Maindata_FasterSUS_IP_all_93c ip
 
@@ -80,13 +68,9 @@ AS (
 		INNER JOIN [Data_Store_SUS_Unified].[APC].[spell] fss
 		ON ip.eID = fss.PRIMARYKEY_ID
 
-		--For episode info (Unused? Maybe for filtering on episode_id = 1?)
+		--For episode info (To get dominant episode)
 		INNER JOIN [Data_Store_SUS_Unified].[APC].[spell.episodes] fsse
 		ON ip.eID = fsse.PRIMARYKEY_ID
-
-		--Critical Care data
-		LEFT JOIN [Data_Store_SUS_Unified].[APC].[spell.critical_care_consolidated] fssc
-		ON ip.eID = fssc.PRIMARYKEY_ID
 	
 		--Procedure lookup
 		INNER JOIN (
@@ -143,11 +127,7 @@ AS (
 					--In Spell?
 					[spell.admission.intended_management],
 					-- For LOS
-					[BedDays],
-					-- For NCL\Non-NCL
-					[commissioner_ncl],
-					--Critical Care
-					[Critical Care Flag]
+					[BedDays]
 )
 
 
@@ -165,9 +145,7 @@ SELECT
 	[POD], [dc], [el], [los_01_el], [activity],
 	[id_pro], [procedure_speciality], [procedure_name], [procedure_benchmark], [hvlc],
 	[spell.admission.intended_management], [intended],
-	[BedDays],
-	[commissioner_ncl],
-	[Critical Care Flag]
+	[BedDays]
 
 FROM (
 	SELECT 
@@ -179,9 +157,7 @@ FROM (
 		SUM([activity]) AS [activity],
 		[id_pro], [procedure_speciality], [procedure_name], [procedure_benchmark], [hvlc],
 		[spell.admission.intended_management], [intended],
-		[BedDays],
-		[commissioner_ncl],
-		[Critical Care Flag]
+		[BedDays]
 	FROM cte
 
 	WHERE org_code IN ('RAP','RKE','RAN','RRV','RAL','RP6','RP4')
@@ -191,7 +167,5 @@ FROM (
 		[POD], 
 		[id_pro], [procedure_speciality], [procedure_name], [procedure_benchmark], [hvlc],
 		[spell.admission.intended_management], [intended],
-		[BedDays],
-		[commissioner_ncl],
-		[Critical Care Flag]
+		[BedDays]
 ) agg
