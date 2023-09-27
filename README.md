@@ -29,6 +29,12 @@ The purpose of the lookup table is to generate a map between Faster SUS rows and
 
 - Added columns to process Elective activity and LOS 0-1 activity for DAX measures
 
+### [2.5] - 27/09/2023
+
+- Reorganised project directories
+- Minor formatting changes to generate_lookup file
+- Allow for benchmark to be unspecified for the procedure table
+
 ## Design
 
 ```mermaid
