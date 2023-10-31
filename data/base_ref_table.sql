@@ -14,7 +14,8 @@ SELECT opcs.*,
 		icd_17, icd_18, icd_19, icd_20, icd_21, icd_22, icd_23, icd_24) AS icd_all
 FROM (
 	SELECT 
-		Year, Fin_Month, Age, POD, tfc, main_spec,
+		Year, Fin_Month, org_code, Age, POD, tfc, main_spec,
+		hospital_no,
 		PRIMARYKEY_ID, EPISODES_ID,
 		opcs_1, opcs_2, opcs_3, opcs_4, opcs_5, opcs_6, opcs_7, opcs_8,
 		opcs_9, opcs_10, opcs_11, opcs_12, opcs_13, opcs_14, opcs_15, opcs_16,
@@ -22,11 +23,14 @@ FROM (
 	FROM (
 		SELECT 
 			fs.Year, fs.Fin_Month,
+			fs.ProviderCode AS [org_code],
 			fs.Age, fs.POD, 
-			fs.SpecCode AS [tfc], 
+			fs.SpecCode AS [tfc],
 			fsse.[care_professional.main_specialty] AS [main_spec],
+			fs.SLAM_HospitalNo AS [hospital_no],
 			opcs.PRIMARYKEY_ID, opcs.EPISODES_ID, 
 			code, 'opcs_' + CAST(OPCS_ID AS VARCHAR) AS OPCS_ID
+
 		FROM [Data_Store_SUS_Unified].[APC].[spell.episodes.clinical_coding.procedure.opcs] opcs
 
 		LEFT JOIN [NCL].[dbo].[Maindata_FasterSUS_IP_all_93c] fs
