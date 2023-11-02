@@ -44,6 +44,7 @@ FROM (
 		AND Year IS NOT NULL
 		AND fsse.[spell.open_spell_indicator] = 0
 		AND fsse.[dominant_episode_flag] = 1
+		AND fs.SLAM_HospitalNo IS NOT NULL
 
 	) AS s
 	PIVOT (
