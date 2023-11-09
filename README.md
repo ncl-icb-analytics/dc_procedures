@@ -35,6 +35,11 @@ The purpose of the lookup table is to generate a map between Faster SUS rows and
 - Minor formatting changes to generate_lookup file
 - Allow for benchmark to be unspecified for the procedure table
 
+### [2.6] - 07/11/2023
+
+- Modified code to use hospital spell number (and org code) as the uid for the lookup table due to issue of old eIDs getting overwritten with time
+- Modified sql to use new lookup id
+
 ## Design
 
 ```mermaid
