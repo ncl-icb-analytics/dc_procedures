@@ -40,6 +40,13 @@ The purpose of the lookup table is to generate a map between Faster SUS rows and
 - Modified code to use hospital spell number (and org code) as the uid for the lookup table due to issue of old eIDs getting overwritten with time
 - Modified sql to use new lookup id
 
+### [2.7] - 04/12/2023
+
+- Added a version of the base reference table for procedures where only the opcs code is considered (more optimised)
+- Added a cool off and retry code to the lookup generator code
+- Issue flagged where the PRIMARY KEY field in the Unified SUS table is out of sync with the main FasterSUS tables
+- Moved the flag_qtr field in PowerBI from being processed in PowerBI to being processed in the SQL view
+
 ## Design
 
 ```mermaid
