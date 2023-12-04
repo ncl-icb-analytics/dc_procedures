@@ -35,7 +35,7 @@ AS (
 		-- For LOS
 		[BedDays], 
 		CASE WHEN [shorthand] IN ('BMIC', 'HEN', 'KING', 'HIGH') THEN 1 ELSE 0 END AS [independent_care],
-		CASE WHEN qf.qf_qtr IS NULL THEN 'Include' ELSE 'Exclude' END AS [flag_qtr]
+		CASE WHEN qf.qf_qtr IS NULL THEN 'Exclude' ELSE 'Include' END AS [flag_qtr]
 				
 	FROM (
 		--DISTINCT to remove duplicates from the SUS dataset
